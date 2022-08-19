@@ -9,14 +9,14 @@ To update the OS repositories, I ran the following codes
 ```bash
 sudo apt update
 ```
-![Screenshot](https://)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/Update.png)
 
 To upgrade the OS, I ran the following codes
 
 ```bash
 sudo apt upgrade
 ```
-![Screenshot](https://)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/Upgrade.png)
 
 ### *__Node.js Installation__*
 
@@ -27,14 +27,14 @@ curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 ```
 > To locate the Node.js software from Ubuntu repositories.
 
-![Screenshot](https://)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/locate%20nodejs.png)
 
 ```bash
 sudo apt-get install -y nodejs
 ```
 > To install the located Node.js software, and NPM which serves as a package manager for Node. It is used to install Node modules & packages and to manage dependency conflicts.
 
-![Screenshot](https:/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/install%20nodejs%20&%20npm.png)
 
 And I ran the following code to verify the Node.js and NPM installation.
 
@@ -45,7 +45,7 @@ node -v
 npm -v
 ```
 
-![Screenshot](https://gi)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/node%20&%20npm%20verification.png)
 
 ### *__Application Code setup__*
 I created a folder called Todo, navigated into the folder using the `mkdir` and `cd` commands respectively, and initialised my project by running the `npm init` command as shown below
@@ -60,13 +60,12 @@ cd Todo
 npm init
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/verify%20nginx%20working.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/npm%20initialize.png)
 
 > I followed on screen prompt and pressed enter till the `package.json` file was created.
 
-I ran the `ls` commmand to verify the creationof the package.json file.
-![Screenshot](https:)
-![Screenshot](https:)
+I ran the `ls` commmand to verify the creation of the package.json file.
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/package.json%20confirmed.png) 
 
 ### *__Install ExpressJS__*
 
@@ -75,16 +74,17 @@ To install the ExpressJS framework for Node.js
 ```bash
 npm install express
 ```
-![Screenshot](https:)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/install%20express.png)
 
 After the installation , i created an index.js file using the `touch` command and also used the `ls` command to verify creation of said file.
 
 ```bash
 touch index.js
 ```
-![Screenshot](htt)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/touch%20index.png) 
 
-using the vim text editor, i saved some code in the index.js file as shown below
+
+Using the vim text editor, i saved some code in the index.js file as shown below.
 
 ```bash
 vim index.js
@@ -111,27 +111,27 @@ app.listen(port, () => {
 console.log(`Server running on port ${port}`)
 });
 ```
-![Screenshot](htt)
-![Screenshot](htt)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/vim%20index.js.png)
 
 I tried starting my server by running the `node index.js` command but i got an error of a missing module. Using npm which is the package manager for node i was able to install the missing module, and was ab le to start the server.
 
 ```bash
-node index.js
-```
-```bash
 npm install dotenv
 ```
-![Screenshot](httpsd)
+```bash
+node index.js
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/starting%20the%20server.png)
 
 After seeing that my server was up and running i  decided to verify this using my browser. i used the puublic IP address of the EC2 along with the port number returned earlier.
 
-![Screenshot](httpsd)
-
 But for this to work i had to enable the specific port on the EC2 as it is disabled by default for security reasons.
 
-![Screenshot](httpsd)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/111841864814ae5b5e1979c0bdec10f1befa7b96/3.%20Project%203%20MERN%20Stack%20Implementation/SG%20updated.png)
+
 > I got the `Welcome to Express` message in the browser, which verifies that the server is truly working.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/111841864814ae5b5e1979c0bdec10f1befa7b96/3.%20Project%203%20MERN%20Stack%20Implementation/server%20verified%20in%20browser.png)
 
 ### ***Routes***
 I will require the Todo app to carry out three tasks,
@@ -162,6 +162,7 @@ touch api.js
 ```bash
 vim api.js
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5775b14af80c6a16e1cf1a7f1d7bca3143b13d8a/3.%20Project%203%20MERN%20Stack%20Implementation/create%20routes%20folder%20and%20more.png)
 ```javascript
 const express = require ('express');
 const router = express.Router();
@@ -180,9 +181,9 @@ router.delete('/todos/:id', (req, res, next) => {
 
 module.exports = router;
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/)
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5775b14af80c6a16e1cf1a7f1d7bca3143b13d8a/3.%20Project%203%20MERN%20Stack%20Implementation/api.js%20populated.png)
 
 ### ***MODELS***
 
