@@ -162,7 +162,7 @@ touch api.js
 ```bash
 vim api.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5775b14af80c6a16e1cf1a7f1d7bca3143b13d8a/3.%20Project%203%20MERN%20Stack%20Implementation/create%20routes%20folder%20and%20more.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5473c6bafc11ffd7e213fd528e641132a294b2b5/3.%20Project%203%20MERN%20Stack%20Implementation/create%20routes%20folder.png)
 ```javascript
 const express = require ('express');
 const router = express.Router();
@@ -192,7 +192,7 @@ To create a model that wil be used to define the schema of the mongoDB used for 
 1. Navigated back to the `Todo` folder.
 1. install mongoose using the node package manager.
 2. Create a new directory called `models`.
-3. Navigate into the new folder.
+3. Navigate into the new folder, and created a `todo.js` file in the models folder using the  `touch` command.
 
 ```bash
 cd .. 
@@ -200,20 +200,16 @@ cd ..
 ```bash
 npm install mongoose
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5473c6bafc11ffd7e213fd528e641132a294b2b5/3.%20Project%203%20MERN%20Stack%20Implementation/install%20mongoose.png)
+
 ```bash
- mkdir models
-```
-```bash
-cd models
+ mkdir models && cd models && touch todo.js
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/codes.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5473c6bafc11ffd7e213fd528e641132a294b2b5/3.%20Project%203%20MERN%20Stack%20Implementation/create%20models%20folder.png)
 
-I created a `todo.js` file in the models folder using the  `touch` command, 
-```bash
-touch todo.js
-```
-And using the vim text editor i saved the code below to the file;
+
+Using the vim text editor i saved the code below to the file;
 ```bash
 vim todo.js
 ```
