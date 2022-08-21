@@ -232,12 +232,15 @@ const Todo = mongoose.model('todo', TodoSchema);
 module.exports = Todo;
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/todo.js%20populated.png)
 
 I then ran the following codes;
  ```bash
 cd ~/Todo/routes
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/navigate%20to%20routes.png)
+
+
 > To navigate back to the `routes` folder, and
  ```bash
 vim api.js
@@ -278,42 +281,51 @@ Todo.findOneAndDelete({"_id": req.params.id})
 
 module.exports = router;
 ```
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/api.js%20modified.png)
+
 > This was to basically replace the previous content of the `api.js` file using the vim text editor.
 
 ### ***MongoDB DATABASE***
-I needed a database where my data will be stored. For this we will make use of [`mLab`](https://www.mongodb.com/atlas-signup-from-mlab). 
+I needed a database where my data will be stored. For this, I will make use of [`mLab`](https://www.mongodb.com/atlas-signup-from-mlab). 
 
 After signing up on the platform, I completed a getting started checklist, and in the process I carried out the following;
 1. create a DB user and granted permission to the new user.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/create%20DB%20User.png)
 
 2.  I allowed access to the MongoDB DB from anywhere *(Not ideal/recommended for a prodution enviroment, but it is ideal for testing).*
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/IP%20Access%20List.png)
 
 3. Created a cluster using AWS as my cloud platform.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/create%20a%20cluster.png)
 
 4. Created a DB and collection.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5f8354654739155a4cf26d006387cd40fe979e8f/3.%20Project%203%20MERN%20Stack%20Implementation/Create%20DB%20and%20Collection.png)
 
-5. Accessed my DB connection string.
+5. Accessed my DB connection string by clicking on the `connect` button on the database page.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5f8354654739155a4cf26d006387cd40fe979e8f/3.%20Project%203%20MERN%20Stack%20Implementation/get%20.env%20string.png)
 
-I created a `.env` file and saved my DB connection string to it, as a process.env was specifies in the `index.js` file to access environment variables.
+I created a `.env` file and saved my DB connection string to it, as a `process.env` was specified in the `index.js` file to access environment variables.
 
 ```bash
 touch .env
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/1ba3d7a3317b564b2de70243c234581914482113/3.%20Project%203%20MERN%20Stack%20Implementation/create%20.env%20file.png)
+
+```bash
 vi .env
 ```
 > And the connection string to access the database in it, just as below:
 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/1ba3d7a3317b564b2de70243c234581914482113/3.%20Project%203%20MERN%20Stack%20Implementation/latest%20.env%20file.png)
+
 ```bash
-mongodb+srv://ardamz:Password1@mern-stack.7hgerup.mongodb.net/ardamzTestDB?retryWrites=true&w=majority
+DB = 'mongodb+srv://ardamz:Password1@mern-stack.7hgerup.mongodb.net/ardamzTestDB?retryWrites=true&w=majority'
 ```
 I then updated the content of the `index.js` file by
 1. Running the `vim index.js` command,
@@ -323,6 +335,7 @@ I then updated the content of the `index.js` file by
 1. Hitting the ***Enter*** button.
 1. Hit `i` button to enter the insert mode in vim,
 1. And finally pasting the entire code block below in the file.
+
 ```bash
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -363,9 +376,13 @@ console.log(`Server running on port ${port}`)
 });
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/1ba3d7a3317b564b2de70243c234581914482113/3.%20Project%203%20MERN%20Stack%20Implementation/update%20index.js.png)
 
-8. I then started my serverby running the code below, and I got a `Database connected successfully` message as displayed below.
+8. I then started my server by running the code below, and I got a `Database connected successfully` message as displayed below.
+
+```bash
+node index.js
+```
 
 ![Screenshot](https://github.com/ardamz/PBL/blob/).
 
