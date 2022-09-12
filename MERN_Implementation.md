@@ -346,10 +346,7 @@ npm run dev
 
 From the `client` directorty, i moved to the src directory and created another directory called `components`, and created three (3) files named `Input.js`, `ListTodo.js` and `Todo.js` in the `components` directory.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
-
-
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/mkdir%20components.png)
 
 Using the nano text editor, i saved the below text to the `Input.js` file.
 
