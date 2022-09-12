@@ -1,10 +1,9 @@
-# MERN means MongoDB ExpressJS ReactJS & Node.JS
+# MEAN means MongoDB ExpressJS Angular & Node.JS
 
- ##  **STEP 1 – BACKEND CONFIGURATION**
 
-<!-- I utilised AWS EC2 as my Linux portion of the stack. I used an Ubuntu server, any Linux distro would equally work.!-->
+<!-- I utilised AWS EC2 as my Linux portion of the stack. I used an Ubuntu 20.04 LTS server, any Linux distro would equally work.!-->
 
-To update Ubuntu, I ran the following codes
+To update the OS repositories, I ran the following codes
 
 ```bash
 sudo apt update
@@ -18,23 +17,151 @@ sudo apt upgrade
 ```
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/Upgrade.png)
 
-### *__Node.js Installation__*
+### *__Step 1 -  Node.js Installation.__*
 
 To Install the Node.js software, I ran the following codes
 
+
 ```bash
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 ```
-> To locate the Node.js software from Ubuntu repositories.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/locate%20nodejs.png)
 
+> To add certificates, and
+
 ```bash
-sudo apt-get install -y nodejs
+sudo apt install -y nodejs
 ```
-> To install the located Node.js software, and NPM which serves as a package manager for Node. It is used to install Node modules & packages and to manage dependency conflicts.
+> To install Node.js software.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/install%20nodejs%20&%20npm.png)
+
+### *__Step 2 -  MongoDB Installation.__*
+
+I installed the MongoDB by running the following code;
+
+
+```bash
+sudo apt install -y mongodb-org
+```
+> The procedures followed can be found [here](https://www.cherryservers.com/blog/how-to-install-and-start-using-mongodb-on-ubuntu-20-04)
+
+```bash
+mongod --version
+```
+> I ran this to verify the MongoDB installation.
+
+I then proceeded to start the server, and verify same by running the following codes
+
+```bash
+sudo service mongod start
+```
+
+```bash
+sudo systemctl status mongod
+```
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+
+#### Install npm – Node package manager.
+
+```bash
+sudo apt install -y npm
+```
+To install body-parser package, run
+
+```bash
+sudo npm install body-parser
+```
+
+I then went ahead to create a folder named `Books`, navigate to the `Books` directory and initialized an npm project by running the folowing commands;
+
+```bash
+mkdir Books && cd Books
+```
+```bash
+npm init
+```
+
+I added a file to the directory named `server.js` 
+
+```bash
+vi server.js
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+> Popluated the `server.js` file as above.
+
+
+### *__Step 3 - Install Express and set up routes to the server.__*
+
+Mongoose is a package which provides a straight-forward, schema-based solution to model our application data. I will use Mongoose to establish a schema for the database to store data of our book register.
+
+```bash
+sudo npm install express mongoose
+```
+> I ran the above command to insatll mongoose.
+
+From the `Books` folder, I created a folder named `apps`, and created a `routes.js` file in this new directory by running the following commands.
+
+```bash
+mkdir apps && cd apps
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+```bash
+vi routes.js
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+> I poplulated the routes.js file as above.
+
+From the `apps` folder, I created a folder named `models`, navigated to the folder and created a `books.js` file by running the following commandss;
+
+```bash
+mkdir models && cd models
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+```bash
+vi book.js
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+> I poplulated the books.js file as above.
+
+### *__Step 4 – Access the routes with AngularJS.__*
+> AngularJS provides a web framework for creating dynamic views in  web applications. In this project, I made use of AngularJS to connect my web page with Express and perform actions on my book register.
+
+I navigated to the `books` directory by running the command below.
+```bash
+cd ~/Books
+```
+I then went ahead to create a folder named `public`, navigated to the folder and created a file named `script.js`
+
+```bash
+mkdir public && cd public
+```
+```bash
+vi script.js
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+> I poplulated the script.js file as above.
+
+
+
+
+
+
+
+
+
 
 And I ran the following code to verify the Node.js and NPM installation.
 
@@ -89,6 +216,28 @@ Using the vim text editor, i saved some code in the index.js file as shown below
 ```bash
 vim index.js
 ```
+```javascript
+const express = require('express');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+app.use((req, res, next) => {
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+
+app.use((req, res, next) => {
+res.send('Welcome to Express');
+});
+
+app.listen(port, () => {
+console.log(`Server running on port ${port}`)
+});
+```
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/vim%20index.js.png)
 
 I tried starting my server by running the `node index.js` command but i got an error of a missing module. Using npm which is the package manager for node i was able to install the missing module, and was ab le to start the server.
@@ -107,7 +256,7 @@ But for this to work i had to enable the specific port on the EC2 as it is disab
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/111841864814ae5b5e1979c0bdec10f1befa7b96/3.%20Project%203%20MERN%20Stack%20Implementation/SG%20updated.png)
 
-> I got the `Welcome to Express` message in the browser, which verifies that the server is working.
+> I got the `Welcome to Express` message in the browser, which verifies that the server is truly working.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/111841864814ae5b5e1979c0bdec10f1befa7b96/3.%20Project%203%20MERN%20Stack%20Implementation/server%20verified%20in%20browser.png)
 
@@ -137,11 +286,29 @@ cd routes
 ```bash
 touch api.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5473c6bafc11ffd7e213fd528e641132a294b2b5/3.%20Project%203%20MERN%20Stack%20Implementation/create%20routes%20folder.png)
-
 ```bash
 vim api.js
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5473c6bafc11ffd7e213fd528e641132a294b2b5/3.%20Project%203%20MERN%20Stack%20Implementation/create%20routes%20folder.png)
+```javascript
+const express = require ('express');
+const router = express.Router();
+
+router.get('/todos', (req, res, next) => {
+
+});
+
+router.post('/todos', (req, res, next) => {
+
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+
+})
+
+module.exports = router;
+```
+
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5775b14af80c6a16e1cf1a7f1d7bca3143b13d8a/3.%20Project%203%20MERN%20Stack%20Implementation/api.js%20populated.png)
 
@@ -174,6 +341,24 @@ Using the vim text editor i saved the code below to the file;
 vim todo.js
 ```
 
+```javascript
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+//create schema for todo
+const TodoSchema = new Schema({
+action: {
+type: String,
+required: [true, 'The todo text field is required']
+}
+})
+
+//create model for todo
+const Todo = mongoose.model('todo', TodoSchema);
+
+module.exports = Todo;
+```
+
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/todo.js%20populated.png)
 
 I then ran the following codes;
@@ -190,6 +375,39 @@ vim api.js
  ```bash
 :%d
 ```
+ ```javascript
+const express = require ('express');
+const router = express.Router();
+const Todo = require('../models/todo');
+
+router.get('/todos', (req, res, next) => {
+
+//this will return all the data, exposing only the id and action field to the client
+Todo.find({}, 'action')
+.then(data => res.json(data))
+.catch(next)
+});
+
+router.post('/todos', (req, res, next) => {
+if(req.body.action){
+Todo.create(req.body)
+.then(data => res.json(data))
+.catch(next)
+}else {
+res.json({
+error: "The input field is empty"
+})
+}
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+Todo.findOneAndDelete({"_id": req.params.id})
+.then(data => res.json(data))
+.catch(next)
+})
+
+module.exports = router;
+```
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/api.js%20modified.png)
 
@@ -201,16 +419,15 @@ I needed a database where my data will be stored. For this, I will make use of [
 After signing up on the platform, I completed a getting started checklist, and in the process I carried out the following;
 1. create a DB user and granted permission to the new user.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/create%20DB%20User.png)
-
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/create%20DB%20User.png)
 
 2.  I allowed access to the MongoDB DB from anywhere *(Not ideal/recommended for a prodution enviroment, but it is ideal for testing).*
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/IP%20Access%20List.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/IP%20Access%20List.png)
 
 3. Created a cluster using AWS as my cloud platform.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/create%20a%20cluster.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3eaaf08b1a1b13469665ab2941adf1d482b9d99d/3.%20Project%203%20MERN%20Stack%20Implementation/create%20a%20cluster.png)
 
 4. Created a DB and collection.
 
