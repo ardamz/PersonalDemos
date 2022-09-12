@@ -214,11 +214,12 @@ After signing up on the platform, I completed a getting started checklist, and i
 
 4. Created a DB and collection.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5f8354654739155a4cf26d006387cd40fe979e8f/3.%20Project%203%20MERN%20Stack%20Implementation/Create%20DB%20and%20Collection.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3.%20Project%203%20MERN%20Stack%20Implementation/Create%20DB%20and%20Collection.png)
 
 5. Accessed my DB connection string by clicking on the `connect` button on the database page.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/5f8354654739155a4cf26d006387cd40fe979e8f/3.%20Project%203%20MERN%20Stack%20Implementation/get%20.env%20string.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/get%20.env%20string.png)
+
 
 I created a `.env` file and saved my DB connection string to it, as a `process.env` was specified in the `index.js` file to access environment variables.
 
