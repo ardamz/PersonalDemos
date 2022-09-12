@@ -234,11 +234,9 @@ vi .env
 ```
 > And the connection string to access the database in it, just as below:
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/1ba3d7a3317b564b2de70243c234581914482113/3.%20Project%203%20MERN%20Stack%20Implementation/latest%20.env%20file.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/latest%20.env%20file.png)
 
-```bash
-DB = 'mongodb+srv://ardamz:Password1@mern-stack.7hgerup.mongodb.net/ardamzTestDB?retryWrites=true&w=majority'
-```
+
 I then updated the content of the `index.js` file by
 1. Running the `vim index.js` command,
 1. Pressing the esc button,
@@ -247,46 +245,6 @@ I then updated the content of the `index.js` file by
 1. Hitting the ***Enter*** button.
 1. Hit `i` button to enter the insert mode in vim,
 1. And finally pasting the entire code block below in the file.
-
-```bash
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const routes = require('./routes/api');
-const path = require('path');
-require('dotenv').config();
-
-const app = express();
-
-const port = process.env.PORT || 5000;
-
-//connect to the database
-mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => console.log(`Database connected successfully`))
-.catch(err => console.log(err));
-
-//since mongoose promise is depreciated, we overide it with node's promise
-mongoose.Promise = global.Promise;
-
-app.use((req, res, next) => {
-res.header("Access-Control-Allow-Origin", "\*");
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-next();
-});
-
-app.use(bodyParser.json());
-
-app.use('/api', routes);
-
-app.use((err, req, res, next) => {
-console.log(err);
-next();
-});
-
-app.listen(port, () => {
-console.log(`Server running on port ${port}`)
-});
-```
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/1ba3d7a3317b564b2de70243c234581914482113/3.%20Project%203%20MERN%20Stack%20Implementation/update%20index.js.png)
 
