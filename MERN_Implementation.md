@@ -254,7 +254,7 @@ I then updated the content of the `index.js` file by
 node index.js
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/).
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/final%20node%20index.js%20cmd.png).
 
 ### ***Testing Backend Code without Frontend using RESTful API***
 Using `Postman`, I tested all the API endpoints to make sure they are working. For the endpoints that required a body, I sent JSON back with the necessary fields since it’s what I will be setting up in my code.
