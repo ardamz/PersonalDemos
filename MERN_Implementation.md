@@ -259,18 +259,21 @@ node index.js
 ### ***Testing Backend Code without Frontend using RESTful API***
 Using `Postman`, I tested all the API endpoints to make sure they are working. For the endpoints that required a body, I sent JSON back with the necessary fields since it’s what I will be setting up in my code.
 
-
+#### POST API Test
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/POST%20API%20Test%20OK.png)
+> POST API test finally OK, had some fits with the url, but all sorted in the end.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/POST%20Test%20verified%20in%20MongoDB.png)
 
-> POST API test finally OK, had some fits with the url, but alls sorted in the end. POST API also verified in  MongoDB (an entry was `posted` in the DB).
+>  POST API also verified in  MongoDB (an entry was `posted` in the DB).
 
+
+#### GET API Test
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/GET%20API%20Test%20OK.png)
 
 >GET API Test Ok, this was quite straight forward.
 
-
+#### DELETE API Test
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/DELETE%20API%20Test%20Ok.png)
 
 > DELETE API test finally OK, had to send the request with the id to verify what content to delete.
