@@ -279,7 +279,7 @@ Using `Postman`, I tested all the API endpoints to make sure they are working. F
 > DELETE API test finally OK, had to send the request with the id to verify what content to delete.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/GET%20after%20DELETE.png)
-> Running the GET API call after the DELETE API returned an empty body which is expected
+> Running the GET API call after the DELETE API returned an empty body which is expected.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/DELETE%20verified%20in%20MongoDB.png)
 > DELETE API call also verified in the MongoDB.
@@ -290,10 +290,9 @@ I created the user interface (frontend) of my my application using Reactjs. this
 ```bash
 npx create-react-app client
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/).
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/create-react-app%20client.png)
 
 This created a new folder in my `Todo` directory called client, where all the react code will be added.
-![Screenshot](https://github.com/ardamz/PBL/blob/).
 
 ### ***Running a React App***
 before proceeding, I installed the `concurrently` and `nodemon` dependencies by running;
@@ -301,32 +300,36 @@ before proceeding, I installed the `concurrently` and `nodemon` dependencies by 
 ```bash
 npm install concurrently --save-dev
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/Install%20concurrently.png)
 > This is used to run more than one command simultaneously from the same terminal window.
 
 
 ```bash
 npm install nodemon --save-dev
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/Install%20nodemon.png)
 > While this is used to run and monitor the server.
 
 I also edited the package.json file.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/package.json%20before.png)
+> `package.json` before any changes.
 
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/package.json%20after.png)
+> After the value of the `scripts` key has been changed.
 
 I also navigated to the `Todo/client` dirctory and also edited the package.json file by adding the key value pair below,
 
-```
+```json
 "proxy": "http://localhost:5000"
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/client:package.json%20before.png)
+> Before editing.
 
 
-![Screenshot](https://github.com/ardamz/PBL/blob/)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/client:package.json%20after.png)
+> After editing.
 
 ### ***Creating the React Components***
 
