@@ -331,6 +331,17 @@ I also navigated to the `Todo/client` dirctory and also edited the package.json 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/client:package.json%20after.png)
 > After editing.
 
+Running the command below, I was able to verify that my app was up and running
+```bash
+npm run dev
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/npm%20run%20dev%20command.png)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/npm%20run%20dev%20successful.png)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/React%20verified.png)
+> Verification that my app will run in a browser after my EC2 Security Groups to allow TCP traffic on port 3000.
+
 ### ***Creating the React Components***
 
 From the `client` directorty, i moved to the src directory and created another directory called `components`, and created three (3) files named `Input.js`, `ListTodo.js` and `Todo.js` in the `components` directory.
