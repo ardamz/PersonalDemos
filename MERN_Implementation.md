@@ -254,24 +254,32 @@ I then updated the content of the `index.js` file by
 node index.js
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/final%20node%20index.js%20cmd.png).
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/final%20node%20index.js%20cmd.png)
 
 ### ***Testing Backend Code without Frontend using RESTful API***
 Using `Postman`, I tested all the API endpoints to make sure they are working. For the endpoints that required a body, I sent JSON back with the necessary fields since it’s what I will be setting up in my code.
 
 
-![Screenshot](https://github.com/ardamz/PBL/blob/).
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/POST%20API%20Test%20OK.png)
 
-> POST API test finally OK, had some fits with the url, but alls sorted in the end.
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/POST%20Test%20verified%20in%20MongoDB.png)
 
-![Screenshot](https://github.com/ardamz/PBL/blob/).
+> POST API test finally OK, had some fits with the url, but alls sorted in the end. POST API also verified in  MongoDB (an entry was `posted` in the DB).
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/GET%20API%20Test%20OK.png)
 
 >GET API Test Ok, this was quite straight forward.
 
 
-![Screenshot](https://github.com/ardamz/PBL/blob/).
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/DELETE%20API%20Test%20Ok.png)
 
 > DELETE API test finally OK, had to send the request with the id to verify what content to delete.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/GET%20after%20DELETE.png)
+> Running the GET API call after the DELETE API returned an empty body which is expected
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/DELETE%20verified%20in%20MongoDB.png)
+> DELETE API call also verified in the MongoDB.
 
 ##  **STEP 2 – FRONTEND CREATION**
 
