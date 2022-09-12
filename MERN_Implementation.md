@@ -214,7 +214,8 @@ After signing up on the platform, I completed a getting started checklist, and i
 
 4. Created a DB and collection.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/3.%20Project%203%20MERN%20Stack%20Implementation/Create%20DB%20and%20Collection.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/Create%20DB%20and%20Collection.png)
+
 
 5. Accessed my DB connection string by clicking on the `connect` button on the database page.
 
