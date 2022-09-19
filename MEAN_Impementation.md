@@ -186,6 +186,7 @@ node server.js
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/start%20node%20server.png)
 
 Running the `curl -s http://localhost:3300` returned the content of the `index.html` to my terminal screen as shown by the image below.
+
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/curl%20localhost.png)
 
 I also verified the status of the server by visiting the public IP address of my server, and i was able access and interact with my Web Book Register APplication as shown by the pix below.
