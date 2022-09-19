@@ -119,25 +119,25 @@ From the `Books` folder, I created a folder named `apps`, and created a `routes.
 ```bash
 mkdir apps && cd apps
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/apps%20and%20routes.png)
 
 ```bash
 vi routes.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/routes.js.png)
 > I poplulated the routes.js file as above.
 
-From the `apps` folder, I created a folder named `models`, navigated to the folder and created a `books.js` file by running the following commandss;
+From the `apps` folder, I created a folder named `models`, navigated to the folder and created a `books.js` file by running the following commands;
 
 ```bash
 mkdir models && cd models
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/models%20and%20books.png)
 
 ```bash
 vi book.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/books.js.png)
 > I poplulated the books.js file as above.
 
 ### *__Step 4 – Access the routes with AngularJS.__*
@@ -155,9 +155,9 @@ mkdir public && cd public
 ```bash
 vi script.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/public%20and%20script.png)
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/script.js.png)
 > I poplulated the script.js file as above.
 
 In the same `public` folder, I also created and populated an  `index.html` file with some lines of code using the `vi` command.
@@ -165,9 +165,9 @@ In the same `public` folder, I also created and populated an  `index.html` file 
 ```bash
 vi index.html
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/index.html.png)
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/indexhtml.png)
 > I poplulated the index.html file as above.
 
 I navigated back to the `Books` folder, and started the server by running the following commands.
@@ -183,16 +183,16 @@ node server.js
 >To start the server.
 
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/start%20node%20server.png)
 
 Running the `curl -s http://localhost:3300` returned the content of the `index.html` to my terminal screen as shown by the image below.
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/curl%20localhost.png)
 
 I also verified the status of the server by visiting the public IP address of my server, and i was able access and interact with my Web Book Register APplication as shown by the pix below.
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/website.png)
 >Before populating my DB
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/DB%20populated.png)
 >After populating my DB.
 
 
