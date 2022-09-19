@@ -9,7 +9,7 @@ To update the OS repositories, I ran the following codes
 ```bash
 sudo apt update
 ```
-![Screenshot](https://github.com/ardamz/pikso/blob/138ee8a6bb5d000924c45fad28b4281f1a6d12e2/LAMP/Update%20package%20manager.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20%20%20Project%201%20LAMP%20Stack%20Implementation/Update%20package%20manager.png)
 
 ## 2. **Apache**
 
@@ -19,7 +19,7 @@ To Install the Apache (web) server, I ran the following codes
 sudo apt install apache2
 ```
 
-![Screenshot](https://github.com/ardamz/pikso/blob/778b8556b85d3afe7b32183b4ef5c1912e12f5c2/LAMP/install%20apache2.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20%20%20Project%201%20LAMP%20Stack%20Implementation/install%20apache2.png)
 
 And I ran the following code to verify the Apache installation and status
 
@@ -28,7 +28,7 @@ sudo systemctl status apach2e
 ```
 To verify if the Apache server is up and running, i just grab the Public IP address of the Linux system from the AWS EC2 consoloe and put it in the browser and the (default) page below is displayed
 
-![Screenshot](https://github.com/ardamz/pikso/blob/993709479fad15bdd620ea7cab8d4b68b2348696/LAMP/Ubuntu%20default%20browser%20page.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20%20%20Project%201%20LAMP%20Stack%20Implementation/Ubuntu%20default%20browser%20page.png)
 
 ## 3. **Mysql**
 
@@ -37,7 +37,7 @@ To install a mysql-server which will serve as the database of the stack, I ran t
 ```bash
 sudo apt install mysql-server
 ```
-![Screenshot](https://github.com/ardamz/pikso/blob/778b8556b85d3afe7b32183b4ef5c1912e12f5c2/LAMP/install%20mysql.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20%20%20Project%201%20LAMP%20Stack%20Implementation/install%20mysql.png)
 
 To verify mysql-server is running and to change the password for the root user:
 
@@ -59,7 +59,7 @@ To install PHP and all dependencies for both  mysql and Apache, I ran the follow
 ```bash
 sudo apt install php libapache2-mod-php php-mysql
 ```
-![Screenshot](https://github.com/ardamz/pikso/blob/778b8556b85d3afe7b32183b4ef5c1912e12f5c2/LAMP/install%20PHP%20and%20dependecies.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20%20%20Project%201%20LAMP%20Stack%20Implementation/install%20PHP%20and%20dependecies.png)
 
 And to verify if PHP has installed properly, run the follwing code to check the verson of PHP insatlled
 
