@@ -63,7 +63,7 @@ To install PHP and all dependencies for both  mysql and Apache, I ran the follow
 ```bash
 sudo apt install php-fpm php-mysql
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/PHP%20Installation.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/PHP%20Installation.png)
 
 And when prompted, I hit the Y button and pressed ENTER to confirm installation.
 
@@ -83,9 +83,9 @@ sudo mkdir /var/www/projectLEMP
 sudo nano /etc/nginx/sites-available/projectLEMP
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/codes.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/codes.png)
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/LEMP%20config%20file.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/LEMP%20config%20file.png)
 
 >I also ran another batch of codes to do the following:
 1. Activate my configuration by linking to the config file from Nginx’s sites-enabled directory,
@@ -110,7 +110,7 @@ sudo unlink /etc/nginx/sites-enabled/default
 sudo systemctl reload nginx
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/codess.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/codess.png)
 
 I created a simple index.html file to serve as the root of the new website by running:
 
@@ -121,7 +121,7 @@ sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/met
 
 I then verified if the websites are served by the new web directory by inpuuting the Public IP address in a browser, and the result was the page below, which is a graphical representaion of the simple index.html that was written. 
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/LEMP%20nginx%20webpage.png) 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/LEMP%20nginx%20webpage.png) 
 
 >This shows that websites are being served by the preojectlemp web root directory.
 
@@ -136,7 +136,7 @@ and inserting the following text into the file.
 <?php
 phpinfo();
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/PHP%20info%20file.png) 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/PHP%20info%20file.png) 
 
 To verify this, I added the  __*/info.php*__ suffix to the Public IP address of the Linux system.
 
