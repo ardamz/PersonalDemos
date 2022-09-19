@@ -8,14 +8,14 @@ To update the OS repositories, I ran the following codes
 ```bash
 sudo apt update
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/Update.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/apt%20update.png)
 
 To upgrade the OS, I ran the following codes
 
 ```bash
 sudo apt upgrade
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/Upgrade.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/apt%20upgrade.png)
 
 ### *__Step 1 -  Node.js Installation.__*
 
@@ -28,7 +28,7 @@ sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/locate%20nodejs.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/add%20certificates.png)
 
 > To add certificates, and
 
@@ -37,7 +37,7 @@ sudo apt install -y nodejs
 ```
 > To install Node.js software.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/6e74a7e2b9dc58d5b7df61f3cb8cd8521e6bb662/3.%20Project%203%20MERN%20Stack%20Implementation%20copy/install%20nodejs%20&%20npm.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/install%20node.png)
 
 ### *__Step 2 -  MongoDB Installation.__*
 
@@ -47,11 +47,14 @@ I installed the MongoDB by running the following code;
 ```bash
 sudo apt install -y mongodb-org
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/install%20mongodb.png)
+
 > The procedures followed can be found [here](https://www.cherryservers.com/blog/how-to-install-and-start-using-mongodb-on-ubuntu-20-04)
 
 ```bash
 mongod --version
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/mongod%20version.png)
 > I ran this to verify the MongoDB installation.
 
 I then proceeded to start the server, and verify same by running the following codes
@@ -64,7 +67,7 @@ sudo service mongod start
 sudo systemctl status mongod
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/start%20server.png)
 
 
 #### Install npm – Node package manager.
@@ -72,11 +75,15 @@ sudo systemctl status mongod
 ```bash
 sudo apt install -y npm
 ```
-To install body-parser package, run
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/install%20npm.png)
+>To install npm, I ran the command above,
+
+To install body-parser package, I ran the code below
 
 ```bash
 sudo npm install body-parser
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/install%20NPM%20body-parser%20.png)
 
 I then went ahead to create a folder named `Books`, navigate to the `Books` directory and initialized an npm project by running the folowing commands;
 
@@ -86,16 +93,15 @@ mkdir Books && cd Books
 ```bash
 npm init
 ```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/npm%20init.png)
 
 I added a file to the directory named `server.js` 
 
 ```bash
 vi server.js
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/b)
-
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/4.%20Project%204%20MEAN%20Stack%20Implementation/populate%20server.js.png)
 > Popluated the `server.js` file as above.
 
 
