@@ -403,7 +403,17 @@ I then moved back to the `client` directory and installed `axios` which is a Pro
 ```bash
 npm install axios
 ```
-After that, moving back to the components directory and using the nano text editor, i saved the below text to the `ListTodo.js` and `Todo.js`  file.
+After that, by running the following commands,
+
+```bash
+cd src/components
+```
+
+```bash
+nano ListTodo.js
+```
+
+I navigated back to the `components` directory and used the nano text editor to save the below text to the `ListTodo.js` file.
 
 ```bash
 import React from 'react';
@@ -434,4 +444,71 @@ return (
 export default ListTodo
 ```
 
-To make some final adjustment to the view of the front end, i edited the `App.js`, `App.css` and `index.css` file in the `src` directory.vi
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/ListTodoJS.png)
+
+Then i also saved some text to the `Todo.js` file by running the command below
+
+```bash
+nano Todo.js
+```
+
+```bash
+import React, {Component} from 'react';
+import axios from 'axios';
+
+import Input from './Input';
+import ListTodo from './ListTodo';
+
+class Todo extends Component {
+
+state = {
+todos: []
+}
+
+componentDidMount(){
+this.getTodos();
+}
+
+getTodos = () => {
+axios.get('/api/todos')
+.then(res => {
+if(res.data){
+this.setState({
+todos: res.data
+})
+}
+})
+.catch(err => console.log(err))
+}
+
+deleteTodo = (id) => {
+
+    axios.delete(`/api/todos/${id}`)
+      .then(res => {
+        if(res.data){
+          this.getTodos()
+        }
+      })
+      .catch(err => console.log(err))
+
+}
+
+render() {
+let { todos } = this.state;
+
+    return(
+      <div>
+        <h1>My Todo(s)</h1>
+        <Input getTodos={this.getTodos}/>
+        <ListTodo todos={todos} deleteTodo={this.deleteTodo}/>
+      </div>
+    )
+
+}
+}
+
+export default Todo;
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/3.%20Project%203%20MERN%20Stack%20Implementation/TodoJS.png)
+
+To make some final adjustment to the view of the front end, i edited the `App.js`, `App.css` and `index.css` file in the `src` directory. navigating to the `src` directory
