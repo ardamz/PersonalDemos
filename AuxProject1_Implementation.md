@@ -9,7 +9,6 @@ I created and navigated to the `shell` directory by running the following comman
 ```bash
 mkdir shell && cd shell
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20Project%201%20LAMP%20Stack%20Implementation/Update%20package%20manager.png)
 
 I the created and populated a `names.csv` file by running
 
@@ -17,15 +16,13 @@ I the created and populated a `names.csv` file by running
 vim names.csv
 ```
 
-![Screenshot](https://code1.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/code1.png)
 
-I then proceeded to created the developers group by running the command below
+I then proceeded to create the developers group by running the command below
 
 ```bash
 sudo groupadd developers
 ```
-
-![Screenshot](https://code2.png)
 
 I then navigated to `.ssh` directory by running 
 
@@ -47,6 +44,10 @@ vim id_rsa.pub
 ```bash
 vim id_rsa
 ```
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/code2.png)
+
+
  ## 2. **Automation Script**
 
 I navigated back to the `shell` directory and created a shell script called `onboarding.sh`. The script will perform the following tasks;
@@ -68,9 +69,9 @@ cd ~/shell
 ```bash
 vim onboarding.sh
 ```
-![Screenshot](https://onboard.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/Onboarding.sh.png)
 
-I then changed the pemission of the `onboarding.sh` file to make it executable by running the `chmod` command, befor running the script.
+I then changed the permission of the `onboarding.sh` file to make it executable by running the `chmod` command, before running the script.
 
 ```bash
 chmod +x onboarding.sh
@@ -79,15 +80,23 @@ chmod +x onboarding.sh
 ```bash
 ./ onboarding.sh
 ```
-![Screenshot](https://code3.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/code3.png)
+
+
 I was able to get the script to run successfully aftersome initial jitters.
 
 
 ## 3. **Random User Credential Testing**
 
-I was able to use the `su` command to switch to other users within the terminal.
+I was able to verify that the script ran successfully by doing any of the following;
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/1.%20Project%201%20LAMP%20Stack%20Implementation/Ubuntu%20default%20browser%20page.png)
+1. Using the `su` command to switch to other users on the server.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/SwitchUser.png)
+
+1. Using the `ls` command to list all the users with an home fo to other users on the server.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/UsersHomeDirectory.png)
 
 
 Using the `Santos.pem` file created earlier, i was able to login as various users on the server.
