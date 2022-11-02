@@ -140,7 +140,7 @@ phpinfo();
 
 To verify this, I added the  __*/info.php*__ suffix to the Public IP address of the Linux system.
 
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/PHP.%20verfied.png) 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/PHP%20verfied.png) 
 
 >The result is a web page containing detailed information about the server as shown above.
 
@@ -150,7 +150,7 @@ As the page generated contains sensitive information about the PHP server, it wa
 ```bash
 sudo rm /var/www/your_domain/info.php
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/more%20codes.png) 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/more%20codes.png) 
 
 ## 5. **Retrieving Data from Mysql Database With PHP**
 
@@ -179,9 +179,9 @@ sudo rm /var/www/your_domain/info.php
  mysql> exit
  ``` 
 
- ![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/create%20sample%20DB.png)
+ ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/create%20sample%20DB.png)
 
- ![Screenshot](https://github.com/ardamz/PBL/blob/be1ebed8ae4f7a4720334a7f49e1305326b9eef5/PROJECT%202:%20LEMP%20images/create%20sample%20user.png) 
+ ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/create%20sample%20user.png) 
 
  To login to the Mysql console as the newly created user, i ran the code below.
 
@@ -205,25 +205,24 @@ I inserted a few rows of content in the test table. by running the **INSERT** co
 ```
 mysql> INSERT INTO sampleDB.todo_list (content) VALUES ("My first important item");
 ```
-![Screenshot](https://github.com/ardamz/pikso/blob/d5b432bb0320497579e53ffea35c08bba6bce1ae/LEMP/write%20to%20DB.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/write%20to%20DB.png)
 
-To confirm that the data was successfully saved to your table, I ran:
+To confirm that the data was successfully saved to the table, I ran:
 
 ```bash
 mysql>  SELECT * FROM sampleDB.todo_list;
 ```
 > And the output was as shown below.
 
-![Screenshot](https://github.com/ardamz/pikso/blob/d5b432bb0320497579e53ffea35c08bba6bce1ae/LEMP/view%20DB%20table.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/view%20DB%20table.png)
 
-After verifying the exit of the database, i exited the mysql console.
+After validating entries to the database, i exited the mysql console.
 
-Using nano text editor, I the created a PHP script that will connect to MySQL and query for my content. 
+Using nano text editor, I then created a `.php` script that will connect to MySQL and query for content. 
 
 ```bash
 nano /var/www/projectLEMP/todo_list.php
 ```
-![Screenshot](https://github.com/ardamz/PBL/blob/fda325d8682502b58284babcef088520f45e649f/PROJECT%202:%20LEMP%20images/more%20codes.png)
 
 I created this  new PHP file in my custom web root directory and saved the script below in it:
 
@@ -247,7 +246,7 @@ try {
 }
 ```
 
-![Screenshot](https://github.com/ardamz/PBL/blob/fda325d8682502b58284babcef088520f45e649f/PROJECT%202:%20LEMP%20images/DB%20to%20PHP.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/2.%20Project%202%20LEMP%20Stack%20Implementation/DB%20to%20PHP.png)
 
 Finally i grabbed the Public IP address of the Linux system again and append */todo_list.php* as a suffix, and the browser returned the content of the todo_list Table in the sampleDB earlier created as shown below.
 
