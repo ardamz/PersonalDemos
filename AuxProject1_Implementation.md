@@ -86,6 +86,10 @@ chmod +x onboarding.sh
 I was able to get the script to run successfully aftersome initial jitters.
 
 
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/Greeeeen.png)
+> All tasks accomplished by script.
+
+
 ## 3. **Random User Credential Testing**
 
 I was able to verify that the script ran successfully by doing any of the following;
@@ -94,12 +98,31 @@ I was able to verify that the script ran successfully by doing any of the follow
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/SwitchUser.png)
 
-1. Using the `ls` command to list all the users with an home fo to other users on the server.
+2. Using the `ls` command to list all the users with an home fo to other users on the server.
 
 ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/UsersHomeDirectory.png)
 
 
-Using the `Santos.pem` file created earlier, i was able to login as various users on the server.
+3. Using the `Santos.pem` file created earlier, i was able to login as various users on the server.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/SSH@Santos.png)
+>SSH as Santos
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/SSH@Yahaya.png)
+>SSH  as Yahaya
 
 ## 4. **Hiccups**
+
+Everything was going smoothly until i ran my script, and i got a message i wasn't expecting on the screen.
+
+
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/Aux_Project_1%20(Shell%20Scripting)/hiccups.png)
+> Last 2 lines were unexpected
+
+Apparently for the fifth task of my script, the public was in my `~/.ssh` directory, but the script specified the `~/shell` directory. 
+
+To fix this, i could either edit the script to change the location of the public key or copy the public key to the shell directory, I went for the latter.
+
+
 
