@@ -1,6 +1,6 @@
 # Web Solution With WordPress
 
- ## A.  **Preparing The Web & DB Servers**
+ ## A.  **Preparing The Web & DataBase Servers**
 
 > I utilised AWS EC2 as my server for this project. 
 
