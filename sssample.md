@@ -48,7 +48,7 @@ sudo lvcreate -n opt-lv 9.7G nfsdata-vg
 # apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
 
 <!---
-apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
+opt-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
 -->
 
 
