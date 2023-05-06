@@ -54,4 +54,4 @@ opt-lv will be used to store data for the Website while, logs-lv will be used to
 
 [apps-lv and logs-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.]: #
 
-apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
+apps-lv will be used to store data for the Website while both methods above work.
