@@ -1,278 +1,329 @@
-# Web Solution With WordPress
+# DevOps Tooling Website Solution
 
- ## A.  **Preparing The Web & DataBase Servers**
+ ## A.  **Preparing The NFS Server**
 
 > I utilised AWS EC2 as my server for this project. 
 
-1. I created 3 additional volumes and attched them to the web server.
+1. I created 3 additional volumes and attched them to the NFS server.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/Volumes.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/Volumes.png)
 
-2. I used the `gdisk` utility to create a single partition on each of the 3 disks for both the Web Server and DB Server.
+
+2. I used the `gdisk` utility to create a single partition on each of the 3 disks for  the NFS Web Server.
  ```bash 
 sudo gdisk /dev/xvdf
 ```
-3. I ran the `lsblk` command to view the newly configured partition on each of the 3 disks on both servers.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/DrivesPartitioned.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/NewPartition.png)
+
+3. I ran the `lsblk` command to view the newly configured partition on each of the 3 disks on the server.
 
 4. I installed the `lvm2` utility by running;
 ```bash
-sudo yum install lvm2
+sudo yum install lvm2 -y
 ```
 I then checked for avalable partitons by running;
 ```bash 
 sudo lvmdiskscan
 ```
-5.  I used the `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/PhysicalVolumes.png)
+5.  I used the `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM, by running   
+```bash
+sudo pvcreate /dev/xvdf1 /dev/xvdg1 /dev/xvdh1
+```
 
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/SudoPvs.png)
 > I verified creation PVs by running ` sudo pvs`
 
-6.  I used the `vgcreate` utility to add all 3 PVs to a volume group (VG) called `webdata-vg`
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/PhysicalVolumes.png)
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/VGCreate.png)
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/SudoVGS.png)
-
-7. On the Web Server, I used th `lvcreate` utility to create 2 logical volumes. apps-lv (using half of the PV size), and logs-lv using the remaining space of the PV size. 
+6.  I used the `vgcreate` utility to add all 3 PVs to a volume group (VG) called `nfsdata-vg`
 
 ```bash
-sudo lvcreate -n apps-lv -L 14G webdata-vg
-sudo lvcreate -n logs-lv 14G webdata-vg
+sudo vgcreate nfsdata-vg /dev/xvdh1  /dev/xvdg1 /dev/xvdf1
 ```
->apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/AppsLV.png)
-> I verified creation LVs by running ` sudo lvs`
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/VGCreate.png)
 
-8. On the DB Server, I used th `lvcreate` utility to create 2 logical volumes. db-lv (using half of the PV size), and logs-lv using the remaining space of the PV size. 
+7. On the NFS Server, I used the `lvcreate` utility to create 3 logical volumes. apps-lv, opt-lv and logs-lv of equal size from the `nfsdata-vg`. 
 
 ```bash
-sudo lvcreate -n db-lv -L 14G webdata-vg
-sudo lvcreate -n logs-lv 14G webdata-vg
+sudo lvcreate -n lv-apps -L 9.7G nfsdata-vg
+sudo lvcreate -n lv-logs -L 9.7G nfsdata-vg
+sudo lvcreate -n lv-opt -L 9.7G nfsdata-vg
 ```
->apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
+<!---
+opt-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
+-->
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/DBlv.png)
+
+[apps-lv and logs-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.]: 
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/lvcreate.png)
 > I verified creation LVs by running ` sudo lvs`
 
-9. I verfied my setup so far by running `sudo lsblk`
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/sudoLVS.png)
+>  had to edit the host name for easier identification.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/FinalSetup.png)
+
+8. I verfied my setup so far by running `sudo lsblk`
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/FinalSetup.png)
 >looking good...
 
-10. using the `mkfs` utility, I formated the Logical Volumes (LVs) on both servers with the ext4 filsesystem.
+9. using the `mkfs` utility, I formated the Logical Volumes (LVs) on the NFS server with the `xfs` filsesystem.
 
 ```bash
-sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
-sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
+sudo mkfs -t xfs /dev/nfsdata-vg/lv-apps
+sudo mkfs -t xfs /dev/nfsdata-vg/lv-logs
+sudo mkfs -t xfs /dev/nfsdata-vg/lv-opt
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/FileSystem.png)
-> I swapped `apps-lv` for `db-lv` when runing same command on the DB Server
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/FileSystem.png)
 
-11. On the Web Server, using the `mkdir` command I created the `/var/www/html` directory to store website files, and the `/home/recovery/logs` directory to store backup of log data. 
+
+10. On the NFS Server, using the `mkdir` command I created the `/mnt/logs`, `/mnt/apps` and `/mnt/opt` directory to serve as mount points for the LVs created above
 
 ```bash
-sudo mkdir -p /var/www/html
-sudo mkdir -p /home/recovery/logs
+sudo mkdir /mnt/apps /mnt/logs /mnt/opt
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/WebDirectory.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/mkdir.png)
 
-12. On the DB Server, using the `mkdir` command I created the `/db` directory to store website files, and the `/home/recovery/logs` directory to store backup of log data. 
+
+11. On the NFS Server, I created mount points on `/mnt` directory for the logical volumes as follow:
+Mount `lv-apps` on `/mnt/apps` – To be used by webservers
+Mount `lv-logs` on `/mnt/logs` – To be used by webserver logs
+Mount `lv-opt` on `/mnt/opt` – To be used by Jenkins server in Project 8
 
 ```bash
-sudo mkdir -p /db
-sudo mkdir -p /home/recovery/logs
+sudo mount /dev/nfsdata-vg/lv-apps /mnt/apps
+sudo mount /dev/nfsdata-vg/lv-logs /mnt/logs
+sudo mount /dev/nfsdata-vg/lv-opt /mnt/opt
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/DBdirectory.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/Mount.png)
 
-13. On the Web Srver, I mounted the `/var/www/html` directory on the `appls-lv` logical volume by running;
+12. I then verified my setup by running the `df -hT` comand as shown below.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/dfh.png)
+
+
+
+## B.  **Installing And Configure NFS Server**
+
+1. I updated the repository and installed the NFS server by running;
 
 ```bash
-sudo mount /dev/webdata-vg/apps-lv /var/www/html/
+sudo yum update
+sudo yum install nfs-utils -y
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/MountHtml.png)
 
-14. On the DB Srver, I mounted the `/db` directory on the `db-lv` logical volume by running;
+2. I then configured it to start on reboot and make sure it is always up and running by executing the following commands;
+```bash
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
+sudo systemctl status nfs-server.service
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/nfs-status.png)
+
+3. I then set up permission that will allow our Web servers to read, write and execute files on NFS:
 
 ```bash
-sudo mount /dev/webdata-vg/db-lv /db/
+sudo chown -R nobody: /mnt/apps /mnt/logs /mnt/opt
+
+sudo chmod -R 777 /mnt/apps /mnt/logs /mnt/opt
+
+sudo systemctl restart nfs-server.service
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/MountDB.png)
 
-15. On both servers, I used `rsync` utility to backup all the files in the log directory `/var/log` into `/home/recovery/logs` (This is required before mounting the file system).
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/rsync.png)
-> sudo rsync -av /var/log/. /home/recovery/logs/
-
-16. I then proceeded to mount `/var/log` on `logs-lv` logical volume. (Note that all the existing data on `/var/log` will be deleted. That is why step 15 above is very
-important).
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/Mountlogs.png)
-> sudo mount /dev/webdata-vg/logs-lv /var/log
-
-17. I restored log files back into the `/var/log` directory
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/restore.png)
-> sudo rsync -av /home/recovery/logs/. /var/log
-
-18. I updated the `etc/fstab` file with the UUID of my LVs
+4. I configured access to NFS for clients within the same subnet by specifying the subnet CIDR range in the `/etc/exports` file, and running the following commands.
 ```bash
-sudo blkid
-sudo vi /etc/fstab
+sudo vi /etc/exports
+sudo exportfs -arv
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/exports.png)
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/exportfs.png)
+
+
+
+5. I got the port number being used by the NFS Server by running, and updated the servers Security Group on AWS accordingly
+
+```bash
+rpcinfo -p | grep nfs
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/blkid.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/nfs_port4SG.png)
+> In order for NFS server to be accessible from the client, I also opened following ports: TCP 111, UDP 111, UDP 2049.
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/fstab.png)
+
+<!-- ![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/SG_rules.png) -->
 
 
-19. I tested the configuration and reloaded the daemon by running;
+## C.  **Installing And Configure DB Servers**
 
- ```bash
- sudo mount -a
- sudo systemctl daemon-reload
+
+
+To install a mysql-server which will serve as the database of the stack, I ran the following codes
+
+```bash
+sudo apt install mysql-server -y
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project2/InstallMysql.png)
+
+To verify mysql-server is running and to change the password for the root user:
+
+```bash
+sudo mysql 
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password@1';
+
+```bash
+ mysql> CREATE DATABASE tooling;
+ 
+ mysql> CREATE USER 'webaccess'@'172.31.16.0/20' IDENTIFIED WITH mysql_native_password BY 'password';
+ 
+ mysql> GRANT ALL PRIVILEGES ON tooling.* TO 'webaccess'@'172.31.16.0/20';
+ mysql> FLUSH PRIVILEGES;
+ 
+ exit
  ```
-I then verified my setup by running the `df -h` comand as shown below.
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project2/webaccess.png)
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/dfh.png)
-
-
-
-## B.  **Installing WordPress on The Web Server**
-
-1. I updated the repository by running;
+I then changed the `bind-address` in the my mysql config using the vim command,
 
 ```bash
-sudo yum -y update
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project2/bind-address.png)
+
+
+
+
+## D.  **Preparing the Web Servers**
+
+1. I launched three (3) new EC2 instances,
+
+2. I ran the codes below  to install NFS client (on all 3 web servers),
+
+```bash
+sudo yum install nfs-utils nfs4-acl-tools -y
 ```
 
-2. Install wget, Apache and it's dependencies by running;
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/utils.png)
+
+3. I created a `/var/www`directory to serve as a mount point for the NFS servers export for apps.
+
 ```bash
-sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
+sudo mkdir /var/www
+sudo mount -t nfs -o rw,nosuid 172.31.24.217:/mnt/apps /var/www
+sudo mount -t nfs -o rw,nosuid 172.31.24.217:/mnt/logs /var/log/httpd
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/wget.png)
+>the second command was actually executed after installing apache.
 
-3. I then started the Web Server
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/mount_www.png)
+
+4. I ran the `df -h`command to verify the mount point. To ensure the changes will persist after reboot, i updated the `/etc/fstab`file by adding the line below.
+
+ `172.31.24.217:/mnt/apps /var/www nfs defaults 0 0`
+ `172.31.24.217:/mnt/logs /var/log/httpd nfs defaults 0 0`
+
+5. I installed Remi’s repository, Apache and PHP by running the following lines,
 
 ```bash
-sudo systemctl enable httpd
-sudo systemctl start httpd
-```
+sudo yum install httpd -y
 
-4. I ran the following commands to install PHP and its dependencies.
-```bash
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-sudo yum module list php
-sudo yum module reset php
-sudo yum module enable php:remi-7.4
-sudo yum install php php-opcache php-gd php-curl php-mysqlnd
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+
+sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm -y
+
+sudo dnf module reset php -y
+
+sudo dnf module enable php -y
+
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
+
 sudo systemctl start php-fpm
+
 sudo systemctl enable php-fpm
-setsebool -P httpd_execmem 1
+
+sudo setsebool -P httpd_execmem 1
 ```
-5. I then restarted the Web Server
+
+6. I enabled TCP port 80 web servers Security Group on AWS, ran the `sudo setenforce 0` command and edited the the following config file;
 
 ```bash
-sudo systemctl restart httpd
+sudo vi /etc/sysconfig/selinux
 ```
+ I set SELINUXTYPE=disabled, and then restarted httpd.
 
-6. I ran code lines below to install wordpress and copy wordpress to `/var/www/html`
+7. I put the public IP address of any/all of the web servers in my browser, and i was able to get the default apache webpage.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/default-page.png)
+
+8. On the web-server, I cloned the `tooling` repository from my github by running the following command;
 
 ```bash
-mkdir wordpress
-cd   wordpress
-sudo wget http://wordpress.org/latest.tar.gz
-sudo tar xzvf latest.tar.gz
-sudo rm -rf latest.tar.gz
-sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
-sudo cp -R wordpress /var/www/html/
+sudo dnf install git -y
+git clone https://github.com/ardamz/tooling.git
 ```
-7. And some more configuration on the server.
+Using the `cd`command, i was able to navigate to thee `tooling` directory and then copied the `html` folder to `/mnt/apps`;
 
 ```bash
-sudo chown -R apache:apache /var/www/html/wordpress
-sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
-sudo setsebool -P httpd_can_network_connect=1
+sudo cp -R html /var/www
 ```
+9. Refreshing the webpages from step 7 above, I got the content that was cloned from the tooling repository.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/new-page.png)
 
 
-## C.  **Install MySQL On The DB Server**
-
-1. I updated the repository by running;
+10. I installed mysql client on the web servers by running,
 
 ```bash
-sudo yum -y update
+sudo dnf install mysql -y
 ```
+11. I updated the website’s configuration (`/var/www/html/functions.php`) file to connect to the database.
 
-2. Installed MySQL Server by running;
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/website-config.png)
+
+12. I went to AWS, and updated the security group of the DB Server to allow MYSQL traffic from the webservers.
+
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/db-access.png)
+
+13. I then applied the `tooling-db.sql` script from the cloned git repo to the database by running the coomand below, ands supplying the password when prompted.
 
 ```bash
-sudo install mysql-server
+mysql -h '172.31.3.3' -u 'webaccess' -p tooling < tooling-db.sql
 ```
 
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/mysql.png)
+14. I reloaded the webpage for any of the webservers, and supplied the following credentials `username: admin`and `password: admin`.
+>This credentials were included in the `tooling-db.sql` script.
 
-3. I checked the status of the service by running
-```bash
-sudo systemctl status mysqld
-```
-And to ensure that the service will be running even after a reboot, I ran the following lines;
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/landing-page.png)
 
-```bash
-sudo systemctl restart mysqld
-sudo systemctl enable mysqld
-```
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/status.png)
-
-
-
-## D.  **Configuring The DB Server To Work With WordPress**
-
-By running the `sudo mysql` command I was able to interact with the MySQL server and able to do the following;
-
-1. Create a Database,
-2. Create a user and 
-3. Grant the user access to all tables in the Database.
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/DBadmin.png)
-
-
-
-## E.  **Configure WordPress To Connect To Remote Database.**
-
-1. I installed MySQL client on the the Web Server to enable it connect to and access the database on the DB Server.
+15. I created in MySQL a new admin user with `username: myuser` and `password: password` by running the following commands on any of the webservers
 
 ```bash
-sudo yum install mysql
+mysql -h '172.31.3.3' -u 'webaccess' -p tooling 
+mysql> INSERT INTO `users` (
+    ->   `id`, `username`, `password`, `email`, `user_type`, `status`)
+    -> VALUES (
+    ->   2, 'myuser', '5f4dcc3b5aa765d61d8327deb882cf99', 'dare@dare.com', 'admin', '1'
+    -> );
 ```
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/MysqlClient.png)
 
-2. I connected to the DB Server from the Web Server by running;
+16. I reloaded the webpage for any of the webservers, and supplied the following credentials `username: myuser` and `password: password`, and i was able to login.
 
-```bash
-sudo mysql -u ardamz -p -h 172.31.86.130
-```
-I was able to run the `SHOW DATABASES` command in the `mysql` prompt successfully.
-
-3. I was finally able to access from my browser the link to my wordpress. 
-
-![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/6.%20Project%206%20Web%20Solution%20with%20WordPress/WebView.png)
+![Screenshot](https://github.com/ardamz/PersonalDemos/blob/main/project7/myuser.png)
 
 
-## F.  **Challenges.**
 
-This was a very interesting (stressful) one. My major challenge was juggling between the 2 servers, and on my first run i ended up installing the MySQL server on the web server and the client on the DB server.
 
-I also skipped some commands before mounting my LVs like the backing up of the log files.
 
-On the second run extra care was taken, but I just couldnt get WordPress on the browser. from tinkering with my config file too many times to count or even restarting the httpd service and even the EC2 instances. Apparently i was still using the IP address of the first run of the project. Still dont know how that happened.
 
-It was a nice learning experience. learnt to pay extra attention to details.
+
+
+
+
+
+
+
+
+
