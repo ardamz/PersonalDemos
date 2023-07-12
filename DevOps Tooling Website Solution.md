@@ -172,9 +172,6 @@ To verify mysql-server is running and to change the password for the root user:
 
 ```bash
 sudo mysql 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password@1';
-
-```bash
  mysql> CREATE DATABASE tooling;
  
  mysql> CREATE USER 'webaccess'@'172.31.16.0/20' IDENTIFIED WITH mysql_native_password BY 'password';
