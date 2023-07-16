@@ -67,4 +67,4 @@ sudo tail -f /var/log/httpd/access_log
 ```
 ![Screenshot](https://github.com/ardamz/my-demo/blob/main/project8/LocalLogs.png)
 
-NOOTES: This was an interesting one as i learnt of the various Load balancing comcepts and some scenarios where they can be deployed.
+NOTES: This was an interesting one as i learnt of the various Load balancing comcepts and some scenarios where they can be deployed.
